@@ -1,5 +1,6 @@
 package com.igor.gesdoc.entity;
 
+import com.igor.gesdoc.enums.Correspondant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +24,9 @@ public class CorrespondanceS {
     private String referenceCoS;
     @Column(name = "objet")
     private String objetCoS;
-    @Column(name = "destinataire")
-    private String destinataireCoS;
-    @Column(name = "statut")
-    private Enum statutCoS;
+    @Enumerated(EnumType.STRING)
+    private Correspondant correspondant;
+
+
 
 }

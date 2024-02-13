@@ -37,6 +37,8 @@ public class ActivityService {
     }
 
     public String deleteActivityById(Long activityId) {
+        activityRepository.findById(activityId)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non enregistré !"));
         activityRepository.deleteById(activityId);
         return "Le service ID : "+activityId+" a été supprimé !";
     }

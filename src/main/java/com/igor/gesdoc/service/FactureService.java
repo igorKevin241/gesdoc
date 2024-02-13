@@ -53,6 +53,8 @@ public class FactureService {
     }
 
     public String deleteFactureById(Long factureId) {
+        factureRepository.findById(factureId)
+                .orElseThrow(() -> new RuntimeException("Facture non enregistrée !"));
         factureRepository.deleteById(factureId);
         return "La facture ID : "+factureId+" a été supprimée !";
     }

@@ -1,5 +1,6 @@
 package com.igor.gesdoc.entity;
 
+import com.igor.gesdoc.enums.StatutExoneration;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class DemandeExo {
     private LocalDate dateReceptionDexo;
     @Column(name = "montant")
     private Double montantExo;
-    @Column(name = "statut")
-    private Enum statutDemandeExo;
+    @Enumerated(EnumType.STRING)
+    private StatutExoneration statutExoneration;
+
 }

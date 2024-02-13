@@ -27,8 +27,8 @@ public class UserController {
     }
 
     @PostMapping("create")
-    public User createUser(@RequestBody User user, Long activityId){
-        return userService.createUser(user, activityId);
+    public User createUser(@RequestBody User user){
+        return userService.createUser(user);
     }
 
     @PutMapping("{userId}")

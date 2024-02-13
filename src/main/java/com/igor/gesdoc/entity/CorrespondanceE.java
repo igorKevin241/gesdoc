@@ -1,5 +1,8 @@
 package com.igor.gesdoc.entity;
 
+import com.igor.gesdoc.enums.Correspondant;
+import com.igor.gesdoc.enums.StatutCorrespondance;
+import com.igor.gesdoc.enums.TypeCorrespondance;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,10 +26,13 @@ public class CorrespondanceE {
     private String referenceCoE;
     @Column(name = "objet")
     private String objetCoE;
-    @Column(name = "expediteur")
-    private String expediteurCo;
-    @Column(name = "statut")
-    private Enum statutCoE;
     @Column(name = "dateDeTraitement")
     private LocalDate dateTraitement;
+    @Enumerated(EnumType.STRING)
+    private StatutCorrespondance statutCorrespondance;
+    @Enumerated(EnumType.STRING)
+    private TypeCorrespondance typeCorrespondance;
+    @Enumerated(EnumType.STRING)
+    private Correspondant correspondant;
+
 }

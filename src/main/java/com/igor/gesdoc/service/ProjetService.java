@@ -49,6 +49,8 @@ public class ProjetService {
     }
 
     public String deleteProjetById(Long projetId) {
+        projetRepository.findById(projetId)
+                .orElseThrow(() -> new RuntimeException("Projet non enregistré !"));
         projetRepository.deleteById(projetId);
         return "Le projet ID : "+projetId+" a été supprimé !";
     }
