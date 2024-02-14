@@ -1,6 +1,7 @@
 package com.igor.gesdoc.controller;
 
 import com.igor.gesdoc.entity.User;
+import com.igor.gesdoc.service.ActivityService;
 import com.igor.gesdoc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,12 @@ import java.util.List;
 @RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
+    private final ActivityService activityService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ActivityService activityService) {
         this.userService = userService;
+        this.activityService = activityService;
     }
 
     @GetMapping("get-all")
@@ -27,8 +30,9 @@ public class UserController {
     }
 
     @PostMapping("create")
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+    public User createUser(@RequestBody User user, Long activityId){
+
+        return userService.createUser(user, activityId);
     }
 
     @PutMapping("{userId}")

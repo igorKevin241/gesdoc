@@ -35,4 +35,14 @@ public class CorrespondanceE {
     @Enumerated(EnumType.STRING)
     private Correspondant correspondant;
 
+    @ManyToOne
+    @JoinColumn(
+            name = "projetId",
+            nullable = false,
+            referencedColumnName = "projetId",
+            foreignKey = @ForeignKey(name = "projet_facture_fk")
+
+    )
+    private Projet projet;
+
 }

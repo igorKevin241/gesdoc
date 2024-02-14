@@ -1,6 +1,7 @@
 package com.igor.gesdoc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.igor.gesdoc.enums.TypeProjet;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,10 +26,10 @@ public class Projet {
     private Float budgetProjet;
     @Column(name = "ccf")
     private String cleComptable;
-    @Column(name ="type" )
-    private Enum typeProjet;
     @Column(name = "numero")
     private String numeroProjet;
+    @Enumerated(EnumType.STRING)
+    private TypeProjet typeProjet;
 
     @ManyToOne
     @JoinColumn(
@@ -44,12 +45,42 @@ public class Projet {
     @JsonIgnore
     private List<Facture> factures = new ArrayList<>();
 
-    public void addFacture(Facture facture){
-        if (!this.factures.contains(facture)){
+    @OneToMany(mappedBy = "projet")
+    @JsonIgnore
+    private List<CorrespondanceE> correspondanceES = new ArrayList<>();
+
+    @OneToMany(mappedBy = "projet")
+    @JsonIgnore
+    private List<CorrespondanceS> correspondanceSS = new ArrayList<>();
+
+    @OneToMany(mappedBy = "projet")
+    @JsonIgnore
+    private List<Instance> instances = new ArrayList<>();
+
+    public void addFacture(Facture facture) {
+        if (!this.factures.contains(facture)) {
             this.factures.add(facture);
             facture.setProjet(this);
         }
     }
 
+    public void addCorrespondanceE(CorrespondanceE correspondanceE) {
+        if (!this.correspondanceES.contains(correspondanceE)) {
+            this.correspondanceES.add(correspondanceE);
+            correspondanceE.setProjet(this);
+        }
+    }
 
+    public void addCorrespondanceS(CorrespondanceS correspondanceS) {
+        if (!this.correspondanceSS.contains(correspondanceS)) {
+            this.correspondanceSS.add(correspondanceS);
+            correspondanceS.setProjet(this);
+        }
+    }
+    public void addInstance(Instance instance) {
+        if (!this.instances.contains(instance)) {
+            this.instances.add(instance);
+            instance.setProjet(this);
+        }
+    }
 }

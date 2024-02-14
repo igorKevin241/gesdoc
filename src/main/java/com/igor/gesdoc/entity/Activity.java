@@ -30,19 +30,18 @@ public class Activity {
     @JsonIgnore
     private List<Projet> projets = new ArrayList<>();
 
-    public void addUser(User user){
-        if (!this.users.contains(user)){
-            this.users.add(user);
-            user.setActivity(this);
-        }
-    }
-
-    public void addProjet(Projet projet){
-        if (!this.projets.contains(projet)){
+    public void addProjet(Projet projet) {
+        if (!this.projets.contains(projet)) {
             this.projets.add(projet);
             projet.setActivity(this);
         }
     }
 
+    public void addUser(User user) {
+        if (!this.users.contains(user)) {
+            this.users.add(user);
+            user.setActivity(this);
+        }
+    }
 }
 

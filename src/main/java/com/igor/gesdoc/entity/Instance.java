@@ -1,6 +1,6 @@
 package com.igor.gesdoc.entity;
 
-import com.igor.gesdoc.enums.Correspondant;
+import com.igor.gesdoc.enums.StatutInstance;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,24 +8,25 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "correspondanceDeSortie")
-public class CorrespondanceS {
+@Table(name = "instance")
+public class Instance {
+
     @Id
     @GeneratedValue
-    @Column(name = "correspodanceSId")
-    private Long corespondanceSId;
-    @Column(name = "date")
-    private LocalDate dateEmission;
-    @Column(name = "reference")
-    private String referenceCoS;
-    @Column(name = "objet")
-    private String objetCoS;
+    @Column(name = "instanceId")
+    private Long instanceId;
+    @Column(name = "dateInstance")
+    private LocalDate dateInstance;
+    @Column(name = "libelleInstance")
+    private String libelleInstance;
+    @Column(name = "instructionsH")
+    private String instructionsH;
     @Enumerated(EnumType.STRING)
-    private Correspondant correspondant;
+    private StatutInstance statutInstance;
 
     @ManyToOne
     @JoinColumn(
@@ -36,7 +37,5 @@ public class CorrespondanceS {
 
     )
     private Projet projet;
-
-
 
 }

@@ -31,7 +31,10 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Utilisateur non enregistré !"));
             }
 
-    public User createUser(User user) {
+    public User createUser(User user, Long activityId) {
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new RuntimeException("Service non enregistré !"));
+        activity.addUser(user);
         return userRepository.save(user);
 
     }
