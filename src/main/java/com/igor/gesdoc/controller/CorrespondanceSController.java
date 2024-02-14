@@ -1,6 +1,5 @@
 package com.igor.gesdoc.controller;
 
-import com.igor.gesdoc.entity.CorrespondanceE;
 import com.igor.gesdoc.entity.CorrespondanceS;
 import com.igor.gesdoc.service.CorrespondanceSService;
 import org.springframework.beans.factory.annotation.Autowired;

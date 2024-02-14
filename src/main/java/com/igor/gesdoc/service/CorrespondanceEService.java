@@ -1,20 +1,14 @@
 package com.igor.gesdoc.service;
 
-import com.igor.gesdoc.entity.CorrespondanceE;
-import com.igor.gesdoc.entity.Facture;
+import com.igor.gesdoc.entity.CorrespondanceEntree;
 import com.igor.gesdoc.entity.Projet;
-import com.igor.gesdoc.enums.Correspondant;
-import com.igor.gesdoc.enums.StatutCorrespondance;
-import com.igor.gesdoc.enums.TypeCorrespondance;
+import com.igor.gesdoc.enums.CorrespondantEnum;
 import com.igor.gesdoc.repository.CorrespondanceERepository;
 import com.igor.gesdoc.repository.ProjetRepository;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,29 +22,29 @@ public class CorrespondanceEService {
         this.correspondanceERepository = correspondanceERepository;
         this.projetRepository = projetRepository;
     }
-    public List<CorrespondanceE> getAllCorrespondancesE() {
+    public List<CorrespondanceEntree> getAllCorrespondancesE() {
         return correspondanceERepository.findAll();
     }
-    public CorrespondanceE getCorrespondanceEById(Long correspondanceEId) {
+    public CorrespondanceEntree getCorrespondanceEById(Long correspondanceEId) {
         return correspondanceERepository.findById(correspondanceEId)
                 .orElseThrow(() -> new RuntimeException("Ce document n'est pas enregistré !"));
     }
-    public CorrespondanceE createCorrespondanceE(CorrespondanceE correspondanceE, Long projetId) {
+    public CorrespondanceEntree createCorrespondanceE(CorrespondanceEntree correspondanceEntree, Long projetId) {
         Projet projet = projetRepository.findById(projetId)
                 .orElseThrow(() -> new RuntimeException("Projet non enregistré !"));
-        projet.addCorrespondanceE(correspondanceE);
-        return correspondanceERepository.save(correspondanceE);
+        projet.addCorrespondanceE(correspondanceEntree);
+        return correspondanceERepository.save(correspondanceEntree);
     }
-    public CorrespondanceE updateCorrespondanceE(Long correspondanceEId, CorrespondanceE correspondanceE) {
-        CorrespondanceE coEUpdated =correspondanceERepository.findById(correspondanceEId)
+    public CorrespondanceEntree updateCorrespondanceE(Long correspondanceEId, CorrespondanceEntree correspondanceEntree) {
+        CorrespondanceEntree coEUpdated =correspondanceERepository.findById(correspondanceEId)
                 .orElseThrow(() -> new RuntimeException("Ce document n'est pas enregistré !"));
-        coEUpdated.setDateReception(correspondanceE.getDateReception());
-        coEUpdated.setObjetCoE(correspondanceE.getObjetCoE());
-        coEUpdated.setReferenceCoE(correspondanceE.getReferenceCoE());
-        coEUpdated.setCorrespondant(correspondanceE.getCorrespondant());
-        coEUpdated.setStatutCorrespondance(correspondanceE.getStatutCorrespondance());
-        coEUpdated.setDateTraitement(correspondanceE.getDateTraitement());
-        coEUpdated.setTypeCorrespondance(correspondanceE.getTypeCorrespondance());
+        coEUpdated.setDateReception(correspondanceEntree.getDateReception());
+        coEUpdated.setObjetCoE(correspondanceEntree.getObjetCoE());
+        coEUpdated.setReferenceCoE(correspondanceEntree.getReferenceCoE());
+        coEUpdated.setCorrespondantEnum(correspondanceEntree.getCorrespondantEnum());
+        coEUpdated.setStatutCorrespondance(correspondanceEntree.getStatutCorrespondance());
+        coEUpdated.setDateTraitement(correspondanceEntree.getDateTraitement());
+        coEUpdated.setTypeCorrespondance(correspondanceEntree.getTypeCorrespondance());
 
         return correspondanceERepository.save(coEUpdated);
     }
@@ -60,6 +54,22 @@ public class CorrespondanceEService {
         correspondanceERepository.deleteById(correspondanceEId);
         return "Le document ID : "+correspondanceEId+" a été supprimé !";
     }
+
+    public List<CorrespondanceEntree> getCorrespondanceEByCorrespondant(CorrespondantEnum correspondantEnum) {
+        List<CorrespondanceEntree> list = correspondanceERepository.findAll();
+        List<CorrespondanceEntree> list1 = new ArrayList<>();
+        for (CorrespondanceEntree correspondanceEntree :list){
+            if (correspondanceEntree.getCorrespondantEnum().getValue().equals(correspondantEnum.getValue())){
+                list1.add(correspondanceEntree);
+            }
+        }
+        return list1;
+    }
+
+
+//    for(int i = 0 ; i < list.size(); i++)
+//            System.out.println(list.get(i));
+
 
 
 //    public List<CorrespondanceE> getCoByCo(Correspondant correspondant) {

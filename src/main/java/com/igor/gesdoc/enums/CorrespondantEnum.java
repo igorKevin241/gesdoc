@@ -1,6 +1,6 @@
 package com.igor.gesdoc.enums;
 
-public enum Correspondant {
+public enum CorrespondantEnum {
 
     TOUS("TOUS"),
     PRESTATAIRES("PRESTATAIRES"),
@@ -55,7 +55,7 @@ public enum Correspondant {
     public String getValue() {
         return value;
     }
-    Correspondant(String value){
+    CorrespondantEnum(String value){
         this.value = value;
 
 

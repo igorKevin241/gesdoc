@@ -1,8 +1,7 @@
 package com.igor.gesdoc.controller;
 
-import com.igor.gesdoc.entity.CorrespondanceE;
-import com.igor.gesdoc.entity.Facture;
-import com.igor.gesdoc.enums.Correspondant;
+import com.igor.gesdoc.entity.CorrespondanceEntree;
+import com.igor.gesdoc.enums.CorrespondantEnum;
 import com.igor.gesdoc.service.CorrespondanceEService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,30 +19,29 @@ public class CorrespondanceEController {
         this.correspondanceEService = correspondanceEService;
     }
     @GetMapping("get-all")
-    public List<CorrespondanceE> getAllCorrepondancesE(){
+    public List<CorrespondanceEntree> getAllCorrepondancesE(){
         return correspondanceEService.getAllCorrespondancesE();
     }
     @GetMapping("{correspondanceEId}")
-    public CorrespondanceE getCorrespondanceEById(@PathVariable Long correspondanceEId){
+    public CorrespondanceEntree getCorrespondanceEById(@PathVariable Long correspondanceEId){
         return correspondanceEService.getCorrespondanceEById(correspondanceEId);
     }
     @PostMapping("create")
-    public CorrespondanceE createCorrespondanceE(@RequestBody CorrespondanceE correspondanceE, Long projetId){
-        return correspondanceEService.createCorrespondanceE(correspondanceE, projetId);
+    public CorrespondanceEntree createCorrespondanceE(@RequestBody CorrespondanceEntree correspondanceEntree, Long projetId){
+        return correspondanceEService.createCorrespondanceE(correspondanceEntree, projetId);
     }
     @PutMapping("{correspondanceEId}")
-    public CorrespondanceE updateCorrespondanceE(@PathVariable Long correspondanceEId, @RequestBody CorrespondanceE correspondanceE){
-        return correspondanceEService.updateCorrespondanceE(correspondanceEId, correspondanceE);
+    public CorrespondanceEntree updateCorrespondanceE(@PathVariable Long correspondanceEId, @RequestBody CorrespondanceEntree correspondanceEntree){
+        return correspondanceEService.updateCorrespondanceE(correspondanceEId, correspondanceEntree);
     }
     @DeleteMapping("{correspondanceEId}")
     public String deleteCorrespondanceEById(@PathVariable Long correspondanceEId){
         return correspondanceEService.deleteCorrespondanceEById(correspondanceEId);
     }
 
+    @GetMapping("{correspondantEum}")
+    public List<CorrespondanceEntree> getCorrespondanceEByCorrespondant(@PathVariable("correspondantEum") CorrespondantEnum correspondantEnum){
 
-
-//    public List<CorrespondanceE> getCoByCo(@PathVariable Correspondant correspondant){
-//
-//        return correspondanceEService.getCoByCo(correspondant);
-//    }
+        return correspondanceEService.getCorrespondanceEByCorrespondant(correspondantEnum);
+    }
 }

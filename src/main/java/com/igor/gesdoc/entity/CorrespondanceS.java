@@ -1,6 +1,6 @@
 package com.igor.gesdoc.entity;
 
-import com.igor.gesdoc.enums.Correspondant;
+import com.igor.gesdoc.enums.CorrespondantEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +25,7 @@ public class CorrespondanceS {
     @Column(name = "objet")
     private String objetCoS;
     @Enumerated(EnumType.STRING)
-    private Correspondant correspondant;
+    private CorrespondantEnum correspondantEnum;
 
     @ManyToOne
     @JoinColumn(

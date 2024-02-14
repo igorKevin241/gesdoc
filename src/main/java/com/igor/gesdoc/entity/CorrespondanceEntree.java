@@ -1,6 +1,6 @@
 package com.igor.gesdoc.entity;
 
-import com.igor.gesdoc.enums.Correspondant;
+import com.igor.gesdoc.enums.CorrespondantEnum;
 import com.igor.gesdoc.enums.StatutCorrespondance;
 import com.igor.gesdoc.enums.TypeCorrespondance;
 import jakarta.persistence.*;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "correspondanceDEntree")
-public class CorrespondanceE {
+public class CorrespondanceEntree {
     @Id
     @GeneratedValue
     @Column(name = "correspodanceEId")
@@ -33,7 +33,7 @@ public class CorrespondanceE {
     @Enumerated(EnumType.STRING)
     private TypeCorrespondance typeCorrespondance;
     @Enumerated(EnumType.STRING)
-    private Correspondant correspondant;
+    private CorrespondantEnum correspondantEnum;
 
     @ManyToOne
     @JoinColumn(

@@ -47,7 +47,7 @@ public class Projet {
 
     @OneToMany(mappedBy = "projet")
     @JsonIgnore
-    private List<CorrespondanceE> correspondanceES = new ArrayList<>();
+    private List<CorrespondanceEntree> correspondanceEntrees = new ArrayList<>();
 
     @OneToMany(mappedBy = "projet")
     @JsonIgnore
@@ -64,10 +64,10 @@ public class Projet {
         }
     }
 
-    public void addCorrespondanceE(CorrespondanceE correspondanceE) {
-        if (!this.correspondanceES.contains(correspondanceE)) {
-            this.correspondanceES.add(correspondanceE);
-            correspondanceE.setProjet(this);
+    public void addCorrespondanceE(CorrespondanceEntree correspondanceEntree) {
+        if (!this.correspondanceEntrees.contains(correspondanceEntree)) {
+            this.correspondanceEntrees.add(correspondanceEntree);
+            correspondanceEntree.setProjet(this);
         }
     }
 
