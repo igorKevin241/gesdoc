@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/correspondanceE")
+@RequestMapping("/api/v1/correspondances")
 public class CorrespondanceEController {
 
     private final CorrespondanceEService correspondanceEService;
@@ -39,7 +39,7 @@ public class CorrespondanceEController {
         return correspondanceEService.deleteCorrespondanceEById(correspondanceEId);
     }
 
-    @GetMapping("{correspondantEum}")
+    @GetMapping("/correspondant/{correspondantEum}")
     public List<CorrespondanceEntree> getCorrespondanceEByCorrespondant(@PathVariable("correspondantEum") CorrespondantEnum correspondantEnum){
 
         return correspondanceEService.getCorrespondanceEByCorrespondant(correspondantEnum);
