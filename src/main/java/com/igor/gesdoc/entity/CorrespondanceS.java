@@ -3,11 +3,13 @@ package com.igor.gesdoc.entity;
 import com.igor.gesdoc.enums.CorrespondantEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "correspondanceDeSortie")
 public class CorrespondanceS {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "correspodanceSId")
     private Long corespondanceSId;
     @Column(name = "date")

@@ -1,6 +1,6 @@
 package com.igor.gesdoc.enums;
 
-public enum TypeProjet {
+public enum TypeProjetEnum {
     MARCHE_DE_TRAVAUX("MARCHE_DE_TRAVAUX"),
     MARCHE_DE_BIENS("MARCHE_DE_BIENS"),
     MARCHE_DE_SERVICE("MARCHE_DE_SERVICE"),
@@ -8,7 +8,7 @@ public enum TypeProjet {
 
     private final String value;
 
-    TypeProjet(String value){
+    TypeProjetEnum(String value){
         this.value = value;
     }
 

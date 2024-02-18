@@ -1,13 +1,11 @@
 package com.igor.gesdoc.enums;
 
-public enum StatutCorrespondance {
-    TRAITE("TRAITE"),
-    NON_TRAITE("NON_TRAITE"),
-    CLASSE("CLASSE");
-
+public enum StatutInstanceEnum {
+    OUVERT("OUVERT"),
+    FERME("FERME");
     private final String value;
 
-    StatutCorrespondance(String value) {
+    StatutInstanceEnum(String value){
         this.value = value;
     }
 

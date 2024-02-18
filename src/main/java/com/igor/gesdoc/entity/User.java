@@ -1,12 +1,14 @@
 package com.igor.gesdoc.entity;
 
-import com.igor.gesdoc.enums.Role;
+import com.igor.gesdoc.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Utilisateur")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long user_id;
     @Column(name = "matricule")
@@ -26,7 +28,7 @@ public class User {
     @Column(name = "email")
     private String email;
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private RoleEnum roleEnum;
 
     @ManyToOne
     @JoinColumn(

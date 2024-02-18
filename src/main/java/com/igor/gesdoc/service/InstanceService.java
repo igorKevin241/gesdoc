@@ -1,18 +1,15 @@
 package com.igor.gesdoc.service;
 
-import com.igor.gesdoc.entity.Facture;
 import com.igor.gesdoc.entity.Instance;
 import com.igor.gesdoc.entity.Projet;
-import com.igor.gesdoc.enums.StatutInstance;
+import com.igor.gesdoc.enums.SelectionEnum;
+import com.igor.gesdoc.enums.StatutInstanceEnum;
 import com.igor.gesdoc.repository.InstanceRepository;
 import com.igor.gesdoc.repository.ProjetRepository;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,7 +41,7 @@ public class InstanceService {
         instanceUpdated.setDateInstance(instance.getDateInstance());
         instanceUpdated.setLibelleInstance(instance.getLibelleInstance());
         instanceUpdated.setInstructionsH(instance.getInstructionsH());
-        instanceUpdated.setStatutInstance(instance.getStatutInstance());
+        instanceUpdated.setStatutInstanceEnum(instance.getStatutInstanceEnum());
 
         return instanceRepository.save(instanceUpdated);
     }
@@ -53,5 +50,27 @@ public class InstanceService {
                 .orElseThrow(() -> new RuntimeException("Instance non enregistrée !"));
         instanceRepository.deleteById(instanceId);
         return "L'instance ID : "+instanceId+" a été supprimée !";
+    }
+
+    public List<Instance> getInstanceEBySelection(SelectionEnum selectionEnum) {
+        List<Instance> list = instanceRepository.findAll();
+        List<Instance> list1 = new ArrayList<>();
+        for (Instance instance :list){
+            if (instance.getSelectionEnum().getValue().equals(selectionEnum.getValue())){
+                list1.add(instance);
+            }
+        }
+        return list1;
+    }
+
+    public List<Instance> getInstanceEByStatut(StatutInstanceEnum statutInstanceEnum) {
+        List<Instance> list = instanceRepository.findAll();
+        List<Instance> list1 = new ArrayList<>();
+        for (Instance instance :list){
+            if (instance.getStatutInstanceEnum().getValue().equals(statutInstanceEnum.getValue())){
+                list1.add(instance);
+            }
+        }
+        return list1;
     }
 }

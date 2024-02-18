@@ -1,7 +1,11 @@
 package com.igor.gesdoc.controller;
 
+import com.igor.gesdoc.entity.Instance;
 import com.igor.gesdoc.entity.Projet;
 import com.igor.gesdoc.entity.User;
+import com.igor.gesdoc.enums.SelectionEnum;
+import com.igor.gesdoc.enums.StatutInstanceEnum;
+import com.igor.gesdoc.enums.TypeProjetEnum;
 import com.igor.gesdoc.service.ProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +45,21 @@ public class ProjetController {
     }
     @DeleteMapping("{projetId}")
     public String deleteProjetById(@PathVariable Long projetId){
+
         return projetService.deleteProjetById(projetId);
+    }
+
+    @GetMapping("/selection/{selectionEnum}")
+    public List<Projet> getProjetEBySelection(@PathVariable("selectionEnum") SelectionEnum selectionEnum){
+
+        return projetService.getProjetEBySelection(selectionEnum);
+
+    }
+
+    @GetMapping("/typeProjet/{typeProjetEnum}")
+    public List<Projet> getProjetByType(@PathVariable("typeProjetEnum") TypeProjetEnum typeProjetEnum){
+
+        return projetService.getProjetByType(typeProjetEnum);
+
     }
 }

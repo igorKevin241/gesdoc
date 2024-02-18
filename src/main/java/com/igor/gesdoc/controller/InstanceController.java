@@ -1,7 +1,8 @@
 package com.igor.gesdoc.controller;
 
 import com.igor.gesdoc.entity.Instance;
-import com.igor.gesdoc.entity.Projet;
+import com.igor.gesdoc.enums.SelectionEnum;
+import com.igor.gesdoc.enums.StatutInstanceEnum;
 import com.igor.gesdoc.service.InstanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +40,19 @@ public class InstanceController {
     @DeleteMapping("{instanceId}")
     public String deleteInstanceById(@PathVariable Long instanceId){
         return instanceService.deleteInstanceById(instanceId);
+    }
+
+    @GetMapping("/selection/{selectionEnum}")
+    public List<Instance> getInstanceEBySelection(@PathVariable("selectionEnum") SelectionEnum selectionEnum){
+
+        return instanceService.getInstanceEBySelection(selectionEnum);
+
+    }
+
+    @GetMapping("/statutInstance/{statutInstanceEnum}")
+    public List<Instance> getInstanceEByStatut(@PathVariable("statutInstanceEnum") StatutInstanceEnum statutInstanceEnum){
+
+        return instanceService.getInstanceEByStatut(statutInstanceEnum);
+
     }
 }

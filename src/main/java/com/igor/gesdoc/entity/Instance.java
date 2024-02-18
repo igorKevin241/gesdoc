@@ -1,13 +1,16 @@
 package com.igor.gesdoc.entity;
 
-import com.igor.gesdoc.enums.StatutInstance;
+import com.igor.gesdoc.enums.SelectionEnum;
+import com.igor.gesdoc.enums.StatutInstanceEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Builder
 @Entity
 @Data
 @AllArgsConstructor
@@ -16,7 +19,7 @@ import java.time.LocalDate;
 public class Instance {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "instanceId")
     private Long instanceId;
     @Column(name = "dateInstance")
@@ -26,7 +29,9 @@ public class Instance {
     @Column(name = "instructionsH")
     private String instructionsH;
     @Enumerated(EnumType.STRING)
-    private StatutInstance statutInstance;
+    private StatutInstanceEnum statutInstanceEnum;
+    @Enumerated(EnumType.STRING)
+    private SelectionEnum selectionEnum;
 
     @ManyToOne
     @JoinColumn(

@@ -45,7 +45,7 @@ public class UserService {
         updateUser.setFirstname(user.getFirstname());
         updateUser.setLastname(user.getLastname());
         updateUser.setEmail(user.getEmail());
-        updateUser.setRole(user.getRole());
+        updateUser.setRoleEnum(user.getRoleEnum());
 
         return userRepository.save(updateUser);
     }

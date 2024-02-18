@@ -1,11 +1,13 @@
 package com.igor.gesdoc.enums;
 
-public enum StatutExoneration {
-    NON_TRAITEE("NON_TRAITEE"),
-    TRAITEE("TRAITEE"),
-    REJETEE("REJETEE");
+public enum StatutCorrespondanceEnum {
+    TRAITE("TRAITE"),
+    NON_TRAITE("NON_TRAITE"),
+    CLASSE("CLASSE");
+
     private final String value;
-    StatutExoneration(String value) {
+
+    StatutCorrespondanceEnum(String value) {
         this.value = value;
     }
 

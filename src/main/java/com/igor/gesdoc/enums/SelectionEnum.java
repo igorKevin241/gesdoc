@@ -1,11 +1,12 @@
 package com.igor.gesdoc.enums;
 
-public enum StatutInstance {
-    OUVERT("OUVERT"),
-    FERME("FERME");
+public enum SelectionEnum {
+    OUI("OUI"),
+    NON("NON");
+
     private final String value;
 
-    StatutInstance(String value){
+    SelectionEnum(String value) {
         this.value = value;
     }
 

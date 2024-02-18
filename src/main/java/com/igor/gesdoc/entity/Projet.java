@@ -1,15 +1,18 @@
 package com.igor.gesdoc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.igor.gesdoc.enums.TypeProjet;
+import com.igor.gesdoc.enums.SelectionEnum;
+import com.igor.gesdoc.enums.TypeProjetEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +32,9 @@ public class Projet {
     @Column(name = "numero")
     private String numeroProjet;
     @Enumerated(EnumType.STRING)
-    private TypeProjet typeProjet;
+    private TypeProjetEnum typeProjetEnum;
+    @Enumerated(EnumType.STRING)
+    private SelectionEnum selectionEnum;
 
     @ManyToOne
     @JoinColumn(
@@ -41,19 +46,23 @@ public class Projet {
     )
     private Activity activity;
 
-    @OneToMany(mappedBy = "projet")
+    @OneToMany(mappedBy = "projet",
+            cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Facture> factures = new ArrayList<>();
 
-    @OneToMany(mappedBy = "projet")
+    @OneToMany(mappedBy = "projet",
+            cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CorrespondanceEntree> correspondanceEntrees = new ArrayList<>();
 
-    @OneToMany(mappedBy = "projet")
+    @OneToMany(mappedBy = "projet",
+            cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CorrespondanceS> correspondanceSS = new ArrayList<>();
 
-    @OneToMany(mappedBy = "projet")
+    @OneToMany(mappedBy = "projet",
+            cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Instance> instances = new ArrayList<>();
 

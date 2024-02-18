@@ -1,15 +1,17 @@
 package com.igor.gesdoc.entity;
 
 import com.igor.gesdoc.enums.CorrespondantEnum;
-import com.igor.gesdoc.enums.StatutCorrespondance;
-import com.igor.gesdoc.enums.TypeCorrespondance;
+import com.igor.gesdoc.enums.StatutCorrespondanceEnum;
+import com.igor.gesdoc.enums.TypeCorrespondanceEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +19,7 @@ import java.time.LocalDate;
 @Table(name = "correspondanceDEntree")
 public class CorrespondanceEntree {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "correspodanceEId")
     private Long corespondanceEId;
     @Column(name = "dateDeReception")
@@ -29,9 +31,9 @@ public class CorrespondanceEntree {
     @Column(name = "dateDeTraitement")
     private LocalDate dateTraitement;
     @Enumerated(EnumType.STRING)
-    private StatutCorrespondance statutCorrespondance;
+    private StatutCorrespondanceEnum statutCorrespondanceEnum;
     @Enumerated(EnumType.STRING)
-    private TypeCorrespondance typeCorrespondance;
+    private TypeCorrespondanceEnum typeCorrespondanceEnum;
     @Enumerated(EnumType.STRING)
     private CorrespondantEnum correspondantEnum;
 

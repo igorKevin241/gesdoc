@@ -1,6 +1,6 @@
 package com.igor.gesdoc.enums;
 
-public enum TypeCorrespondance {
+public enum TypeCorrespondanceEnum {
     COURRIER("COURRIER"),
     INSTRUCTIONS("INSTRUCTIONS"),
     RECOMMANDATIONS_DGCG("RECOMMANDATIONS_DGCG"),
@@ -8,7 +8,7 @@ public enum TypeCorrespondance {
 
     private final String value;
 
-    TypeCorrespondance(String value){
+    TypeCorrespondanceEnum(String value){
         this.value = value;
     }
 

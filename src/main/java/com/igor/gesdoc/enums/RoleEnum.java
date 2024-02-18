@@ -1,6 +1,6 @@
 package com.igor.gesdoc.enums;
 
-public enum Role {
+public enum RoleEnum {
     CHEF_DE_SERVICE("CHEF_DE_SERVICE"),
     CHEF_DE_SECTION("CHEF_DE_SECTION"),
     AGENT_EXECUTION("AGENT_EXECUTION"),
@@ -10,7 +10,7 @@ public enum Role {
     private final String value;
 
 
-    Role(String value) {
+    RoleEnum(String value) {
         this.value = value;
     }
 

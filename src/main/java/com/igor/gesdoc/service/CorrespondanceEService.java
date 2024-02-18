@@ -3,6 +3,7 @@ package com.igor.gesdoc.service;
 import com.igor.gesdoc.entity.CorrespondanceEntree;
 import com.igor.gesdoc.entity.Projet;
 import com.igor.gesdoc.enums.CorrespondantEnum;
+import com.igor.gesdoc.enums.StatutCorrespondanceEnum;
 import com.igor.gesdoc.repository.CorrespondanceERepository;
 import com.igor.gesdoc.repository.ProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,9 @@ public class CorrespondanceEService {
         coEUpdated.setObjetCoE(correspondanceEntree.getObjetCoE());
         coEUpdated.setReferenceCoE(correspondanceEntree.getReferenceCoE());
         coEUpdated.setCorrespondantEnum(correspondanceEntree.getCorrespondantEnum());
-        coEUpdated.setStatutCorrespondance(correspondanceEntree.getStatutCorrespondance());
+        coEUpdated.setStatutCorrespondanceEnum(correspondanceEntree.getStatutCorrespondanceEnum());
         coEUpdated.setDateTraitement(correspondanceEntree.getDateTraitement());
-        coEUpdated.setTypeCorrespondance(correspondanceEntree.getTypeCorrespondance());
+        coEUpdated.setTypeCorrespondanceEnum(correspondanceEntree.getTypeCorrespondanceEnum());
 
         return correspondanceERepository.save(coEUpdated);
     }
@@ -66,16 +67,14 @@ public class CorrespondanceEService {
         return list1;
     }
 
-
-//    for(int i = 0 ; i < list.size(); i++)
-//            System.out.println(list.get(i));
-
-
-
-//    public List<CorrespondanceE> getCoByCo(Correspondant correspondant) {
-//        switch (Correspondant correspondant1){
-//            case Correspondant.TOUS -> correspondanceERepository.findAll();
-//        }
-//    }
-
+    public List<CorrespondanceEntree> getCorrespondanceEByStatut(StatutCorrespondanceEnum statutCorrespondanceEnum) {
+        List<CorrespondanceEntree> list = correspondanceERepository.findAll();
+        List<CorrespondanceEntree> list1 = new ArrayList<>();
+        for (CorrespondanceEntree correspondanceEntree :list){
+            if (correspondanceEntree.getStatutCorrespondanceEnum().getValue().equals(statutCorrespondanceEnum.getValue())){
+                list1.add(correspondanceEntree);
+            }
+        }
+        return list1;
+    }
 }
