@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "correspondanceDeSortie")
 public class CorrespondanceS {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "correspodanceSId")
     private Long corespondanceSId;
     @Column(name = "date")

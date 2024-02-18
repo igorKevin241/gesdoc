@@ -35,12 +35,10 @@ public class CorrespondanceEController {
         return correspondanceEService.getCorrespondanceEById(correspondanceEId);
     }
     @PostMapping("create")
-//    @ApiOperation(value = "Ajouter une correspondance reçue", notes = "Méthode permettant d'ajouter une correspondance reçue", response = CorrespondanceEntree.class)
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "Correspondance ajoutée avec succès!"),
-//            @ApiResponse(code = 400, message = "Format des données incorrect"),
-//            @ApiResponse(code = 500, message = "Erreur interne"),
-//    })
+    @ApiOperation(value = "Ajouter une correspondance reçue", notes = "Méthode permettant d'ajouter une correspondance reçue", response = CorrespondanceEntree.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Elément non enregistré")
+    })
     public CorrespondanceEntree createCorrespondanceE(@RequestBody CorrespondanceEntree correspondanceEntree, Long projetId){
         return correspondanceEService.createCorrespondanceE(correspondanceEntree, projetId);
     }

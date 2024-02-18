@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "demandeExoneration")
 public class DemandeExo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "demandeExoId")
     private Long demandeExoId;
     @Column(name = "entreprise")

@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @Table(name = "correspondanceDEntree")
 public class CorrespondanceEntree {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "correspodanceEId")
     private Long corespondanceEId;
     @Column(name = "dateDeReception")

@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Instance {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "instanceId")
     private Long instanceId;
     @Column(name = "dateInstance")

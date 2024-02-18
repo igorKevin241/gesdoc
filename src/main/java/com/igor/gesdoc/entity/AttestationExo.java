@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "attestationDExo")
 public class AttestationExo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "attestationId")
     private Long attestationExoId;
     @Column(name = "dateDeReception")

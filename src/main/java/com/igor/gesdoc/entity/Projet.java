@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "projet")
 public class Projet {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "projetId")
     private Long projet_id;
     @Column(name = "intitule")

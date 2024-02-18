@@ -4,6 +4,7 @@ import com.igor.gesdoc.entity.CorrespondanceEntree;
 import com.igor.gesdoc.entity.Projet;
 import com.igor.gesdoc.enums.CorrespondantEnum;
 import com.igor.gesdoc.enums.StatutCorrespondanceEnum;
+import com.igor.gesdoc.exception.EntityNotFoundException;
 import com.igor.gesdoc.repository.CorrespondanceERepository;
 import com.igor.gesdoc.repository.ProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +29,17 @@ public class CorrespondanceEService {
     }
     public CorrespondanceEntree getCorrespondanceEById(Long correspondanceEId) {
         return correspondanceERepository.findById(correspondanceEId)
-                .orElseThrow(() -> new RuntimeException("Ce document n'est pas enregistré !"));
+                .orElseThrow(() -> new EntityNotFoundException("Elément non enregistré !"));
     }
     public CorrespondanceEntree createCorrespondanceE(CorrespondanceEntree correspondanceEntree, Long projetId) {
         Projet projet = projetRepository.findById(projetId)
-                .orElseThrow(() -> new RuntimeException("Projet non enregistré !"));
+                .orElseThrow(() -> new EntityNotFoundException("Elément non enregistré !"));
         projet.addCorrespondanceE(correspondanceEntree);
         return correspondanceERepository.save(correspondanceEntree);
     }
     public CorrespondanceEntree updateCorrespondanceE(Long correspondanceEId, CorrespondanceEntree correspondanceEntree) {
         CorrespondanceEntree coEUpdated =correspondanceERepository.findById(correspondanceEId)
-                .orElseThrow(() -> new RuntimeException("Ce document n'est pas enregistré !"));
+                .orElseThrow(() -> new EntityNotFoundException("Elément non enregistré !"));
         coEUpdated.setDateReception(correspondanceEntree.getDateReception());
         coEUpdated.setObjetCoE(correspondanceEntree.getObjetCoE());
         coEUpdated.setReferenceCoE(correspondanceEntree.getReferenceCoE());
@@ -51,7 +52,7 @@ public class CorrespondanceEService {
     }
     public String deleteCorrespondanceEById(Long correspondanceEId) {
         correspondanceERepository.findById(correspondanceEId)
-                .orElseThrow(() -> new RuntimeException("Document non enregistré !"));
+                .orElseThrow(() -> new EntityNotFoundException("Elément non enregistré !"));
         correspondanceERepository.deleteById(correspondanceEId);
         return "Le document ID : "+correspondanceEId+" a été supprimé !";
     }
